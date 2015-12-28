@@ -55,8 +55,15 @@ module.exports = function (journals) {
 //		}
 	};
 
+	functions.shit = 	function (req, res) {
+		res.render('journalinput', {
+			title: 'All Doug journals'});
+	};
 
-
+	functions.signup = function(req, res) {
+		res.json(req.body);
+		console.log("directory =" + req.body.email);
+};
 
 	// functions.saveJournal = function (req, res) {
 	// 	var timestamp = req.param('timestamp');

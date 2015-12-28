@@ -33,8 +33,18 @@ module.exports = function (journals) {
 //	app.put('/journal/:number/save', routes.saveJournal);
 	app.put('/journal/save', routes.saveJournal);
 
+
+	app.post('/signup', routes.signup);
+
+// app.post('/signup', function(req,res){
+//   console.log(req.body);
+// })
+
+
+
 //	app.get('/list', routes.list);
 	app.get('/journals', routes.entriesByDate);
+	app.get('/doug', routes.shit);
 
 
 	return app;
