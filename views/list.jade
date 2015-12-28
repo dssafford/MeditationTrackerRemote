@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	h1= title
+	h2 Doug this is cool really
+	ul
+		each journal, index in journals
+			- journal = journal.getInformation()
+			li= journal.machine + ': ' + journal.directory + '-' + journal.comments
