@@ -37,8 +37,8 @@ module.exports = function (journals) {
 
 	app.put('/journal/save', routes.saveJournal);
 
-
-	app.post('/signup', routes.signup);
+// this is for the form submit
+	app.post('/journalinput', routes.signup);
 
 // app.post('/signup', function(req,res){
 //   console.log(req.body);

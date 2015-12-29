@@ -1,3 +1,15 @@
+body {
+  padding-top: 69px;
+}
+.jumbotron {
+    padding: 30px;
+    margin-bottom: 30px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.14286;
+    color: inherit;
+    background-color: #FA58D0;
+}
 .navbar-default {
     background-color: #2ECCFA;
     border-color: #190707;

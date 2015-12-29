@@ -67,7 +67,7 @@ function prettyDate(dateString){
 
 	functions.crap = 	function (req, res) {
 		console.log("in function crap");
-		res.render('index', {
+		res.render('journalinput', {
 			title: 'Index Jade File'});
 	};
 
@@ -78,9 +78,36 @@ function prettyDate(dateString){
 			title: 'All Doug journals'});
 	};
 
+// Add the record data to database
 	functions.signup = function(req, res) {
-		res.json(req.body);
-		console.log("directory =" + req.body.email);
+		// below outputs full response to browser in json format
+		//res.json(req.body);
+		console.log("directory =" + req.body.comments);
+			var record = new journalSchema(
+				journals[number].getInformation()
+			);
+
+			record.timestamp = Date.now();
+			record.machine = req.body.machine;
+			record.directory = req.body.directory;
+			record.project = req.body.projectname;
+			record.comments = req.body.comments;
+
+			record.save(function(err) {
+				if (err) {
+					console.log(err);
+					res.status(500).json({status: 'failure'});
+				} else {
+					res.json({status: 'success'});
+				}
+			});
+
+			res.json({status: 'done'});
+
+
+
+
+
 };
 
 	// functions.saveJournal = function (req, res) {

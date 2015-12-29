@@ -1,33 +1,32 @@
-extends layout
-
-block content
+include layout
+include index
+include jumbotron
+block main-content
   .section
-    p 
-      h1 Hey Dude!!!
           .container 
             .well
-              form.form-horizontal(name="signupForm")
+              form.form-horizontal(name="/signup", method="post")
                 fieldset
                   legend Enter Information
                   .form-group
-                    label.col-md-2.control-label(for="email") Email
+                    label.col-md-2.control-label(for="machine") Machine
                     .col-md-10
-                      input.form-control(name="email", type="email", placeholder="Email", ng-model="email", required)
+                      input.form-control(name="machine", type="text", placeholder="Machine", required)
                   .form-group
-                    label.col-md-2.control-label(for="password") Password
+                    label.col-md-2.control-label(for="directory") Directory
                     .col-md-10
-                      input.form-control(name="password", type="password", placeholder="Password", ng-model="password", required)
+                      input.form-control(name="directory", type="text", placeholder="Directory", required)
                   .form-group
-                    label.col-md-2.control-label(for="fname") First Name
+                    label.col-md-2.control-label(for="projectname") Project Name
                     .col-md-10
-                      input.form-control(name="fname", type="text", placeholder="First Name", ng-model="fname", required)
+                      input.form-control(name="projectname", type="text", placeholder="Project Name",  required)
                   .form-group
-                    label.col-md-2.control-label(for="lname") Last Name
+                    label.col-md-2.control-label(for="comments") Comments
                     .col-md-10
-                      input.form-control(name="lname", type="text", placeholder="Last Name", ng-model="lname", required)
+                      input.form-control(name="comments", type="text", placeholder="Comments",  required)
                   .form-group
                     .col-md-10.col-md-offset-2
                       .pull-right
-                        button.btn.btn-primary(ng-click="signup()", ng-disabled="signupForm.$invalid") Submit
+                        button.btn.btn-primary(ng-click="signup()") Submit
                         | &nbsp;
                         a.btn.btn-default(href="/") Cancel
