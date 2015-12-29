@@ -31,6 +31,10 @@ module.exports = function (journals) {
 
 	app.get('/journal/:number', routes.journal);
 //	app.put('/journal/:number/save', routes.saveJournal);
+
+
+
+
 	app.put('/journal/save', routes.saveJournal);
 
 
@@ -40,11 +44,11 @@ module.exports = function (journals) {
 //   console.log(req.body);
 // })
 
-
-
-//	app.get('/list', routes.list);
+	app.get('/list', routes.list);
 	app.get('/journals', routes.entriesByDate);
 	app.get('/doug', routes.shit);
+
+	app.get('/journalinput', routes.shit);
 
 
 	return app;

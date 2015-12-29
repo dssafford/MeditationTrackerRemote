@@ -23,6 +23,16 @@ module.exports = function (journals) {
 		}
 	};
 
+function prettyDate(dateString){
+    var d = date.getDate(dateString);
+    var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    var m = monthNames[date.getMonth()];
+    var y = date.getFullYear();
+    return d+' '+m+' '+y;
+}
+
+
+
 	functions.saveJournal = function (req, res) {
 		var timestamp = req.param('timestamp');
 
@@ -56,6 +66,7 @@ module.exports = function (journals) {
 	};
 
 	functions.shit = 	function (req, res) {
+		console.log("in function shit");
 		res.render('journalinput', {
 			title: 'All Doug journals'});
 	};
