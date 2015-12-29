@@ -29,28 +29,25 @@ module.exports = function (journals) {
 	  app.use(express.errorHandler());
 	}
 
-	app.get('/journal/:number', routes.journal);
+//	app.get('/journal/:number', routes.journal);
 //	app.put('/journal/:number/save', routes.saveJournal);
 
-
-
-
-	app.put('/journal/save', routes.saveJournal);
+// Save journal entry
+//	app.put('/journal/save', routes.saveJournal);
 
 // this is for the form submit
-	app.post('/journalinput', routes.signup);
+	app.post('/journalinput', routes.saveJournal);
 
-// app.post('/signup', function(req,res){
-//   console.log(req.body);
-// })
+// List out journal entries sorted by date
+	app.get('/journallist', routes.entriesByDate);
 
-	app.get('/shit', routes.crap);
-	app.get('/list', routes.list);
-	app.get('/journals', routes.entriesByDate);
-	app.get('/doug', routes.shit);
 
-	app.get('/journalinput', routes.shit);
+// Go to Journal Input Form
+	app.get('/journalinput', routes.journalinput);
 
+
+//	Home page
+	app.get('/', routes.home);
 
 	return app;
 }
