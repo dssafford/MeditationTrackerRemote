@@ -44,6 +44,7 @@ module.exports = function (journals) {
 //   console.log(req.body);
 // })
 
+	app.get('/shit', routes.crap);
 	app.get('/list', routes.list);
 	app.get('/journals', routes.entriesByDate);
 	app.get('/doug', routes.shit);

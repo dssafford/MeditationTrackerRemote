@@ -65,6 +65,13 @@ function prettyDate(dateString){
 //		}
 	};
 
+	functions.crap = 	function (req, res) {
+		console.log("in function crap");
+		res.render('index', {
+			title: 'Index Jade File'});
+	};
+
+
 	functions.shit = 	function (req, res) {
 		console.log("in function shit");
 		res.render('journalinput', {

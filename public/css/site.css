@@ -1,0 +1,30 @@
+.navbar-default {
+    background-color: #2ECCFA;
+    border-color: #190707;
+}
+.navbar-inverse {
+    background-color: #FA58D0;
+    border-color: #128F76;
+}
+h1 {
+  color:#13987e;
+}
+footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+footer p {
+  border-top: 1px solid #d7e0e2;
+}
+.navbar-form .form-group {
+  margin-left: 10px;
+}
+.navbar-form button {
+  margin-left: 10px;
+}
+.top-padding-med {
+  padding-top: 10px;
+}
+.margin-left-med {
+  margin-left: 10px;
+}
