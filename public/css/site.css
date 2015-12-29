@@ -18,6 +18,9 @@ body {
     background-color: #FA58D0;
     border-color: #128F76;
 }
+th {
+  font-size: 100px
+}
 h1 {
   color:#13987e;
 }
