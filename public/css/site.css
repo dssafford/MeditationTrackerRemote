@@ -8,18 +8,19 @@ body {
     font-weight: 200;
     line-height: 2.14286;
     color: inherit;
-    background-color: #FA58D0;
+    background-color: #d7e0e2;
 }
 .navbar-default {
-    background-color: #2ECCFA;
+    background-color: #F5A9BC;
     border-color: #190707;
 }
 .navbar-inverse {
-    background-color: #FA58D0;
+    background-color: #F5A9BC;
     border-color: #128F76;
 }
 th {
-  font-size: 100px
+  font-size: 25px;
+  color: #2ECCFA;
 }
 h1 {
   color:#13987e;
