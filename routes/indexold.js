@@ -22,23 +22,55 @@ module.exports = function (journals) {
 			res.json(journals[number].getInformation());
 		}
 	};
+/*
+	// Save journal entry
+	functions.saveJournal = function (req, res) {
+		var timestamp = req.param('timestamp');
 
-	// Just go to the home page
-	functions.home = function(req, res) {
-		console.log("Calling home page");
-		res.render('home', {
-			title: 'Doug Journal Home;'
-		});
+//		if (typeof journals[number] === 'undefined') {
+//			res.status(404).json({status: 'error in saveJournal'});
+//		} else {
+			journals[number].triggerArrive();
+			var record = new journalSchema(
+				journals[number].getInformation()
+			);
+
+			console.log("number=" + req.param('timestamp'));
+
+			record.timestamp = Date.now();
+			record.machine = "Shit";
+			record.directory = "directory";
+			record.project = "Crap Project";
+			record.comments = "Hey wow, right from routes";
+
+			record.save(function(err) {
+				if (err) {
+					console.log(err);
+					res.status(500).json({status: 'failure'});
+				} else {
+					res.json({status: 'success'});
+				}
+			});
+
+			res.json({status: 'done'});
+//		}
+	};
+*/
+
+	functions.crap = 	function (req, res) {
+		console.log("in function crap");
+		res.render('journalinput', {
+			title: 'Index Jade File'});
 	};
 
-// Go to Journal input form
-	functions.journalinput = 	function (req, res) {
-		console.log("in function journal input");
+
+	functions.shit = 	function (req, res) {
+		console.log("in function shit");
 		res.render('journalinput', {
 			title: 'All Doug journals'});
 	};
 
-// Add the record data to database, from POST on form submit
+// Add the record data to database
 	functions.saveJournal = function(req, res) {
 		// below outputs full response to browser in json format
 		//res.json(req.body);
@@ -63,7 +95,36 @@ module.exports = function (journals) {
 			});
 
 			res.json({status: 'done'});
+
+
+
+
+
 };
+
+	// functions.saveJournal = function (req, res) {
+	// 	var timestamp = req.param('timestamp');
+
+	// 	if (typeof journals[number] === 'undefined') {
+	// 		res.status(404).json({status: 'error in saveJournal'});
+	// 	} else {
+	// 		journals[number].triggerArrive();
+	// 		var record = new journalSchema(
+	// 			journals[number].getInformation()
+	// 		);
+
+	// 		record.save(function(err) {
+	// 			if (err) {
+	// 				console.log(err);
+	// 				res.status(500).json({status: 'failure'});
+	// 			} else {
+	// 				res.json({status: 'success'});
+	// 			}
+	// 		});
+
+	// 		res.json({status: 'done'});
+	// 	}
+	// };
 
 	functions.list = function (req, res) {
 		res.render('list', {
