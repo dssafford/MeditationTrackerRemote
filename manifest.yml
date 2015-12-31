@@ -3,6 +3,7 @@ applications:
 - name: dougstudyapp
   memory: 128MB
   instances: 2
+  command: node server.js
 
 services:
 - dougstudy

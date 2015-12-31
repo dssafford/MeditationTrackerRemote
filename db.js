@@ -4,5 +4,6 @@ var mongoose = require('mongoose');
 
 var url = 'mongodb://localhost:27017/DougStudy';
 mongoose.connect(url);
+console.log("In db.js, mongoose connecting");
 
 module.exports = mongoose.connection;
