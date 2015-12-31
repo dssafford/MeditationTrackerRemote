@@ -1,0 +1,30 @@
+include layout
+include index
+include jumbotron
+- function getDate(dateString) {
+	//if it's already a date object and not a string you don't need this line:
+	-var date = new Date(dateString);
+	-var d = date.getDate();
+	-var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+	-var m = monthNames[date.getMonth()];
+	-var y = date.getFullYear();
+	-return d+' '+m+' '+y;
+-}
+
+
+block content
+.container.top-padding-med
+	table.table.table-hover.table-striped.table-condensed
+		tr
+			th Date
+			th Machine
+			th Directory
+			th Project
+			th Comments
+				each journal, index in journals
+					tr 
+						td #{getDate(journal.timestamp)}
+						td=journal.machine
+						td=journal.directory
+						td=journal.project
+						td=journal.comments
