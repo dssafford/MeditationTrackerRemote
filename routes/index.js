@@ -58,11 +58,12 @@ module.exports = function (journals) {
 					console.log(err);
 					res.status(500).json({status: 'failure'});
 				} else {
-					res.json({status: 'success'});
+					//res.json({status: 'success'});
+					res.redirect('/journallist');
 				}
 			});
 
-			res.json({status: 'done'});
+			//res.json({status: 'done'});
 };
 
 	functions.list = function (req, res) {
