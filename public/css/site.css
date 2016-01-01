@@ -18,9 +18,21 @@ body {
     background-color: #F5A9BC;
     border-color: #128F76;
 }
+.navbar-default .navbar-nav>li>a {
+    color: #0000FF;
+}
+.navbar-default .navbar-brand {
+    font-size: 20px;
+    color: #333;
+}
+
 th {
   font-size: 25px;
   color: #2ECCFA;
+}
+
+h6 {
+      color: #2ECCFA;
 }
 h1 {
   color:#13987e;
