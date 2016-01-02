@@ -87,5 +87,26 @@ module.exports = function (journals) {
 		});
 	};
 
+	functions.journaldetail = function(req, res) {
+		// get the user starlord55
+
+		console.log("looking for id:" + req.param('id'));
+
+		journalSchema.find({ _id: req.param('id') })
+		.exec(function(err, journals) {
+			if (err) {
+				res.status(500).json({status: 'failure'});
+			} else {
+				console.log("not failure getting journal detail");
+				res.render('journaldetail', {
+					title: 'Journal Detail',
+					journals: journals
+				});
+			}
+		});		
+	};
+
+
+
 	return functions;
 };

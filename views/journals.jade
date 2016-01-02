@@ -23,7 +23,8 @@ block content
 			th Comments
 				each journal, index in journals
 					tr 
-						td #{getDate(journal.timestamp)}
+						td 
+							a(href="/journals/" + journal._id + "") #{getDate(journal.timestamp)}
 						td=journal.machine
 						td=journal.directory
 						td=journal.project

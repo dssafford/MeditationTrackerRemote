@@ -29,7 +29,7 @@ module.exports = function (journals) {
 	  app.use(express.errorHandler());
 	}
 
-//	app.get('/journal/:number', routes.journal);
+	app.get('/journals/:id', routes.journaldetail);
 //	app.put('/journal/:number/save', routes.saveJournal);
 
 // Save journal entry
