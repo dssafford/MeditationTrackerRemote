@@ -24,7 +24,7 @@ block content
 				each journal, index in journals
 					tr 
 						td 
-							a(href="/journals/" + journal._id + "") #{getDate(journal.timestamp)}
+							a(href="/journaledit/" + journal._id + "") #{getDate(journal.timestamp)}
 						td=journal.machine
 						td=journal.directory
 						td=journal.project

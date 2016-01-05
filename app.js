@@ -10,7 +10,7 @@ module.exports = function (journals) {
 	var app = express();
 
 	// all environments
-	app.set('port', process.env.PORT || 3000);
+	app.set('port', process.env.PORT || 3030);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
 	app.use(express.favicon());
@@ -45,6 +45,10 @@ module.exports = function (journals) {
 // Go to Journal Input Form
 	app.get('/journalinput', routes.journalinput);
 
+// Go to Journal edit form
+	app.get('/journaledit/:id', routes.journaledit);
+
+	app.post('/journaldelete/:id', routes.journaldelete);
 
 //	Home page
 	app.get('/', routes.home);

@@ -1,0 +1,33 @@
+include layout
+include index
+include jumbotron
+block main-content
+  .section
+          .container 
+            .well
+              form.form-horizontal(name="/signup", method="post")
+                fieldset
+                  legend Enter Information
+                  .form-group
+                    label.col-md-2.control-label(for="machine") Machine
+                    .col-md-10
+                      input.form-control(name="machine", type="text", placeholder="Machine", required)
+                  .form-group
+                    label.col-md-2.control-label(for="directory") Directory
+                    .col-md-10
+                      input.form-control(name="directory", type="text", placeholder="Directory", required)
+                  .form-group
+                    label.col-md-2.control-label(for="projectname") Project Name
+                    .col-md-10
+                      input.form-control(name="projectname", type="text", placeholder="Project Name",  required)
+                  .form-group
+                    label.col-md-2.control-label(for="comments") Comments
+                    .col-md-10
+                      input.form-control(name="comments", type="text", placeholder="Comments",  required)
+                  .form-group
+                    .col-md-10.col-md-offset-2
+                      .pull-right
+                        button.btn.btn-primary(ng-click="signup()") Edit
+                        button.byn.btn-primary(ng-click="delete()") Delete
+                        | &nbsp;
+                        a.btn.btn-default(href="/") Cancel

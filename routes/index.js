@@ -38,6 +38,23 @@ module.exports = function (journals) {
 			title: 'All Doug journals'});
 	};
 
+// Go to Journal input form
+	functions.journaledit = function (req, res) {
+		console.log("in function journal edit");
+		journalSchema.find({ _id: req.param('id') })
+		.exec(function(err, journals) {
+			if (err) {
+				res.status(500).json({status: 'failure'});
+			} else {
+				console.log("not failure getting journal edit");
+				res.render('journaledit', {
+					title: 'Edit Journal',
+					journals: journals
+				});
+			}
+		});		
+	};	
+
 // Add the record data to database, from POST on form submit
 	functions.saveJournal = function(req, res) {
 		// below outputs full response to browser in json format
@@ -105,6 +122,21 @@ module.exports = function (journals) {
 			}
 		});		
 	};
+
+	functions.journaldelete = function(req, res)
+	{
+		 journalSchema.find( {_id: req.param("id")}, function(err,docs){
+		  if (err) return console.log(err);
+		  if (!docs || !Array.isArray(docs) || docs.length === 0) 
+		    	return console.log('no docs found');
+		  	
+		  	docs.forEach( function (doc) {
+		    		doc.remove();
+		    		res.redirect("/journallist");
+		  	});
+
+	            });
+	 };
 
 
 
