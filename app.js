@@ -48,7 +48,7 @@ module.exports = function (journals) {
 // Go to Journal edit form
 	app.get('/journaledit/:id', routes.journaledit);
 
-	app.post('/journaldelete/:id', routes.journaldelete);
+	app.get('/journaldelete/:id', routes.journaldelete);
 
 //	Home page
 	app.get('/', routes.home);

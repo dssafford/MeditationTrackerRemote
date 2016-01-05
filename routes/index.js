@@ -59,7 +59,7 @@ module.exports = function (journals) {
 	functions.saveJournal = function(req, res) {
 		// below outputs full response to browser in json format
 		//res.json(req.body);
-		console.log("directory =" + req.body.comments);
+		console.log("directory =" + req.body.directory);
 			var record = new journalSchema(
 				journals[number].getInformation()
 			);
@@ -123,8 +123,8 @@ module.exports = function (journals) {
 		});		
 	};
 
-	functions.journaldelete = function(req, res)
-	{
+	functions.journaldelete = function(req, res){
+		console.log("In Journal Delete");
 		 journalSchema.find( {_id: req.param("id")}, function(err,docs){
 		  if (err) return console.log(err);
 		  if (!docs || !Array.isArray(docs) || docs.length === 0) 
@@ -137,8 +137,6 @@ module.exports = function (journals) {
 
 	            });
 	 };
-
-
 
 	return functions;
 };

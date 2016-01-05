@@ -28,6 +28,8 @@ block main-content
               .form-group
                 .col-md-10.col-md-offset-2
                   .pull-right
-                    button.btn.btn-primary(ng-click="signup()") Save
+                    button.btn.btn-primary Save
+                    | &nbsp;
+                    a.button.btn.btn-danger(href="/journaldelete/" + journal._id + "") Delete
                     | &nbsp;
                     a.btn.btn-default(href="/") Cancel

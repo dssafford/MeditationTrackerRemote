@@ -14,18 +14,21 @@ include jumbotron
 
 block content
 .container.top-padding-med
-	table.table.table-hover.table-striped.table-condensed
+	table.table.table-hover.table-striped.table-bordered
 		tr
-			th Date
+			th.text-center Date
 			th Machine
 			th Directory
 			th Project
 			th Comments
+			th.text-center Delete?
 				each journal, index in journals
 					tr 
-						td 
+						td.text-center
 							a(href="/journaledit/" + journal._id + "") #{getDate(journal.timestamp)}
 						td=journal.machine
 						td=journal.directory
 						td=journal.project
 						td=journal.comments
+						td.text-center
+							a.button.btn.btn-danger(href="/journaldelete/" + journal._id + "") Delete
