@@ -3,9 +3,9 @@
  * Module dependencies.
  */
 
-module.exports = function (journals) {
+module.exports = function (entrys) {
 	var express = require('express');
-	var routes = require('./routes')(journals);
+	var routes = require('./routes')(entrys);
 	var path = require('path');	
 	var app = express();
 
@@ -29,33 +29,33 @@ module.exports = function (journals) {
 	  app.use(express.errorHandler());
 	}
 
-	app.get('/journals/:id', routes.journaldetail);
-//	app.put('/journal/:number/save', routes.saveJournal);
+	app.get('/entrys/:id', routes.entrydetail);
+//	app.put('/entry/:number/save', routes.saveentry);
 
-// Save journal entry
-//	app.put('/journal/save', routes.saveJournal);
-
-// this is for the form submit
-	app.post('/journalinput', routes.saveJournal);
+// Save entry entry
+//	app.put('/entry/save', routes.saveentry);
 
 // this is for the form submit
-//	app.post('/journalUpdate', routes.updateJournal);
+	app.post('/entryinput', routes.saveentry);
+
+// this is for the form submit
+//	app.post('/entryUpdate', routes.updateentry);
 
 
 
-// List out journal entries sorted by date
-	app.get('/journallist', routes.entriesByDate);
+// List out entry entries sorted by date
+	app.get('/entrylist', routes.entriesByDate);
 
 
-// Go to Journal Input Form
-	app.get('/journalinput', routes.journalinput);
+// Go to entry Input Form
+	app.get('/entryinput', routes.entryinput);
 
-// Go to Journal edit form
-	app.get('/journaledit/:id', routes.journaledit);
+// Go to entry edit form
+	app.get('/entryedit/:id', routes.entryedit);
 
-	app.post('/journaledit/:id', routes.updateJournal);
+	app.post('/entryedit/:id', routes.updateentry);
 
-	app.get('/journaldelete/:id', routes.journaldelete);
+	app.get('/entrydelete/:id', routes.entrydelete);
 
 //	Home page
 	app.get('/', routes.home);

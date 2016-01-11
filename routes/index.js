@@ -2,24 +2,24 @@
  * GET home page.
  */
 
-var journalSchema = require('../schemas/journal');
+var entrySchema = require('../schemas/entry');
 
-module.exports = function (journals) {
-	var journal = require('../journal');
+module.exports = function (entrys) {
+	var entry = require('../entry');
 
-	for(var number in journals) {
-		journals[number] = journal(journals[number]);
+	for(var number in entrys) {
+		entrys[number] = entry(entrys[number]);
 	}
 
 	var functions = {};
 
-	functions.journal = function(req, res){
+	functions.entry = function(req, res){
 		var number = req.param('number');
 
-		if (typeof journals[number] === 'undefined') {
-			res.status(404).json({status: 'error in functions.journal'});
+		if (typeof entrys[number] === 'undefined') {
+			res.status(404).json({status: 'error in functions.entry'});
 		} else {
-			res.json(journals[number].getInformation());
+			res.json(entrys[number].getInformation());
 		}
 	};
 
@@ -27,29 +27,29 @@ module.exports = function (journals) {
 	functions.home = function(req, res) {
 		console.log("Calling home page");
 		res.render('home', {
-			title: 'Doug Journal Home;'
+			title: 'Doug entry Home;'
 		});
 	};
 
-// Go to Journal input form
-	functions.journalinput = 	function (req, res) {
-		console.log("in function journal input");
-		res.render('journalinput', {
-			title: 'All Doug journals'});
+// Go to entry input form
+	functions.entryinput = 	function (req, res) {
+		console.log("in function entry input");
+		res.render('entryinput', {
+			title: 'All Doug entrys'});
 	};
 
-// Go to Journal input form
-	functions.journaledit = function (req, res) {
-		console.log("in function journal edit");
-		journalSchema.find({ _id: req.param('id') })
-		.exec(function(err, journals) {
+// Go to entry input form
+	functions.entryedit = function (req, res) {
+		console.log("in function entry edit");
+		entrySchema.find({ _id: req.param('id') })
+		.exec(function(err, entrys) {
 			if (err) {
 				res.status(500).json({status: 'failure'});
 			} else {
-				console.log("not failure getting journal edit");
-				res.render('journaledit', {
-					title: 'Edit Journal',
-					journals: journals
+				console.log("not failure getting entry edit");
+				res.render('entryedit', {
+					title: 'Edit entry',
+					entrys: entrys
 				});
 			}
 		});		
@@ -57,17 +57,17 @@ module.exports = function (journals) {
 
 
 
-	functions.updateJournal = function(req, res) {
-		console.log("In updateJournal");
+	functions.updateentry = function(req, res) {
+		console.log("In updateentry");
 		// below outputs full response to browser in json format
 		//res.json(req.body);
 
-		journalSchema.findOneAndUpdate({_id: req.param("id")} , {machine: req.param("machine"), directory: req.param("directory"),  project: req.param("projectname"), comments: req.param("comments")}, function(err, record) {
+		entrySchema.findOneAndUpdate({_id: req.param("id")} , {machine: req.param("machine"), directory: req.param("directory"),  project: req.param("projectname"), comments: req.param("comments")}, function(err, record) {
 			if (err) throw err;
 
 			console.log("id:" + req.param("id"));
 
-			res.redirect("/journallist");
+			res.redirect("/entrylist");
 
 			// record.timestamp = Date.now();
 			// record.machine = req.body.machine;
@@ -81,7 +81,7 @@ module.exports = function (journals) {
 			// 		res.status(500).json({status: 'failure'});
 			// 	} else {
 			// 		//res.json({status: 'success'});
-			// 		res.redirect('/journallist');
+			// 		res.redirect('/entrylist');
 			// 	}
 			// });
 		});
@@ -89,12 +89,12 @@ module.exports = function (journals) {
 
 
 // Add the record data to database, from POST on form submit
-	functions.saveJournal = function(req, res) {
+	functions.saveentry = function(req, res) {
 		// below outputs full response to browser in json format
 		//res.json(req.body);
-		console.log("IN SAVE JOURNAL - directory =" + req.body.directory);
-			var record = new journalSchema(
-				journals[number].getInformation()
+		console.log("IN SAVE entry - directory =" + req.body.directory);
+			var record = new entrySchema(
+				entrys[number].getInformation()
 			);
 
 			record.timestamp = Date.now();
@@ -109,7 +109,7 @@ module.exports = function (journals) {
 					res.status(500).json({status: 'failure'});
 				} else {
 					//res.json({status: 'success'});
-					res.redirect('/journallist');
+					res.redirect('/entrylist');
 				}
 			});
 
@@ -118,54 +118,54 @@ module.exports = function (journals) {
 
 	functions.list = function (req, res) {
 		res.render('list', {
-			title: 'All Doug journals', 
-			journals: journals});
+			title: 'All Doug entrys', 
+			entrys: entrys});
 	};
 
 	functions.entriesByDate = function(req, res) {
-		journalSchema.find()
+		entrySchema.find()
 		.setOptions({sort: 'timestamp'})
-		.exec(function(err, journals) {
+		.exec(function(err, entrys) {
 			if (err) {
 				res.status(500).json({status: 'failure'});
 			} else {
-				res.render('journals', {
-					title: 'Journals',
-					journals: journals
+				res.render('entrys', {
+					title: 'entrys',
+					entrys: entrys
 				});
 			}
 		});
 	};
 
-	functions.journaldetail = function(req, res) {
+	functions.entrydetail = function(req, res) {
 		// get the user starlord55
 
 		console.log("looking for id:" + req.param('id'));
 
-		journalSchema.find({ _id: req.param('id') })
-		.exec(function(err, journals) {
+		entrySchema.find({ _id: req.param('id') })
+		.exec(function(err, entrys) {
 			if (err) {
 				res.status(500).json({status: 'failure'});
 			} else {
-				console.log("not failure getting journal detail");
-				res.render('journaldetail', {
-					title: 'Journal Detail',
-					journals: journals
+				console.log("not failure getting entry detail");
+				res.render('entrydetail', {
+					title: 'entry Detail',
+					entrys: entrys
 				});
 			}
 		});		
 	};
 
-	functions.journaldelete = function(req, res){
-		console.log("In Journal Delete");
-		 journalSchema.find( {_id: req.param("id")}, function(err,docs){
+	functions.entrydelete = function(req, res){
+		console.log("In entry Delete");
+		 entrySchema.find( {_id: req.param("id")}, function(err,docs){
 		  if (err) return console.log(err);
 		  if (!docs || !Array.isArray(docs) || docs.length === 0) 
 		    	return console.log('no docs found');
 		  	
 		  	docs.forEach( function (doc) {
 		    		doc.remove();
-		    		res.redirect("/journallist");
+		    		res.redirect("/entrylist");
 		  	});
 
 	            });

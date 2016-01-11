@@ -1,9 +1,8 @@
-var Journal = function () {
+var Entry = function () {
 	this.data = {
 		timestamp: null,
-		machine: null,
-		directory: null,
-		project: null,
+		user: null,
+		minutes: null,
 		comments: null
 	};
 
@@ -29,7 +28,7 @@ var Journal = function () {
 };
 
 module.exports = function (info) {
-	var instance = new Journal();
+	var instance = new Entry();
 
 	instance.fill(info);
 

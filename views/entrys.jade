@@ -17,18 +17,16 @@ block content
 	table.table.table-hover.table-striped.table-bordered
 		tr
 			th.text-center Date
-			th Machine
-			th Directory
-			th Project
+			th User
+			th Minutes
 			th Comments
 			th.text-center Delete?
-				each journal, index in journals
+				each entry, index in entrys
 					tr 
 						td.text-center
-							a(href="/journaledit/" + journal._id + "") #{getDate(journal.timestamp)}
-						td=journal.machine
-						td=journal.directory
-						td=journal.project
-						td=journal.comments
+							a(href="/entryedit/" + entry._id + "") #{getDate(entry.timestamp)}
+						td=entry.user
+						td=entry.minutes
+						td=entry.comments
 						td.text-center
-							a.button.btn.btn-danger(href="/journaldelete/" + journal._id + "") Delete
+							a.button.btn.btn-danger(href="/entrydelete/" + entry._id + "") Delete

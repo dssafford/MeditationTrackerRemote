@@ -4,6 +4,6 @@ block content
 	h1= title
 	h2 Doug this is from the canned data
 	ul
-		each journal, index in journals
-			- journal = journal.getInformation()
-			li= journal.machine + ': ' + journal.directory + '-' + journal.comments
+		each entry, index in entrys
+			- entry = entry.getInformation()
+			li= entry.user + ': ' + entry.minutes + '-' + entry.comments

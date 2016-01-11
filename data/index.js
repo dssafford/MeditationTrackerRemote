@@ -1,44 +1,38 @@
 module.exports = {
 	"1": {
-		"dateentered": "12/21/15",
-		"machine": "ipadpro",
-		"directory": "NodeWork",
-		"project": "NodeWork",
-		"comments": "Why is this here"
+		"timestamp": "12/21/15",
+		"user": "ipadpro",
+		"minutes": "NodeWork",
+		"comments": "NodeWork"
 	},
 	"2": {
-		"dateentered": "12/27/2015",
-		"machine": "mbp13",
-		"directory": "NodeWork",
-		"project": "DougWork",
-		"comments": "Why is this here"
+		"timestamp": "12/27/2015",
+		"user": "mbp13",
+		"minutes": "NodeWork",
+		"comments": "DougWork"
 	},
 	"2": {
-		"dateentered": "12/27/2015",
-		"machine": "mbp15",
-		"directory": "gitwork",
-		"project": "my-git-repo",
-		"comments": "Why is this here"
+		"timestamp": "12/27/2015",
+		"user": "mbp15",
+		"minutes": "gitwork",
+		"comments": "my-git-repo"
 	},
 	"3": {
-		"dateentered": "12/27/2015",
-		"machine": "mbp13",
-		"directory": "NodeWork",
-		"project": "NodeWork",
-		"comments": "Why is this here"
+		"timestamp": "12/27/2015",
+		"user": "mbp13",
+		"minutes": "NodeWork",
+		"comments": "NodeWork"
 	},
 	"4": {
-		"dateentered": "12/27/2015",
-		"machine": "mbp13",
-		"directory": "NodeWork",
-		"project": "NodeWork",
-		"comments": "Why is this here"
+		"timestamp": "12/27/2015",
+		"user": "mbp13",
+		"minutes": "NodeWork",
+		"comments": "NodeWork"
 	},
 	"5": {
-		"dateentered": "12/27/2015",
-		"machine": "mbp15",
-		"directory": "AngularWork",
-		"project": "NodeWork",
-		"comments": "Why is this here"
+		"timestamp": "12/27/2015",
+		"user": "mbp15",
+		"minutes": "AngularWork",
+		"comments": "NodeWork"
 	},
 };

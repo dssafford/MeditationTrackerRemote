@@ -15,14 +15,12 @@ include jumbotron
   table.table.table-hover.table-striped.table-condensed
     tr
       th Date
-      th Machine
-      th Directory
-      th Project
+      th User
+      th Minutes
       th Comments
-        each journal, index in journals
+        each entry, index in entrys
           tr 
-            td #{getDate(journal.timestamp)}
-            td=journal.machine
-            td=journal.directory
-            td=journal.project
-            td=journal.comments
+            td #{getDate(entry.timestamp)}
+            td=entry.user
+            td=entry.minutes
+            td=entry.comments

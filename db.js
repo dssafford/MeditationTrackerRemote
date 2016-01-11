@@ -4,7 +4,7 @@ var url = '';
 
 
 if(null == process.env.VCAP_SERVICES) {
-	url = 'mongodb://localhost:27017/DougStudy';
+	url = 'mongodb://localhost:27017/meditationtracker';
 }
 else {
 	var vcap_services = JSON.parse(process.env.VCAP_SERVICES);

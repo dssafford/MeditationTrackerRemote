@@ -1,0 +1,31 @@
+include layout
+include index
+include jumbotron
+block main-content
+  each entry, index in entrys
+    .section
+      .container 
+        .well
+          form.form-horizontal(name="/signup", method="post")
+            fieldset
+              legend Edit entry
+              .form-group
+                label.col-md-2.control-label(for="user") User
+                .col-md-10
+                  input.form-control(name="user", type="text", value=entry.user, required)
+              .form-group
+                label.col-md-2.control-label(for="minutes") Minutes
+                .col-md-10
+                  input.form-control(name="minutes", type="text", value=entry.minutes, required)
+              .form-group
+                label.col-md-2.control-label(for="comments") Comments
+                .col-md-10
+                  input.form-control(name="comments", type="text", value=entry.comments,  required)
+              .form-group
+                .col-md-10.col-md-offset-2
+                  .pull-right
+                    button.btn.btn-primary Save
+                    | &nbsp;
+                    a.button.btn.btn-danger(href="/entrydelete/" + entry._id + "") Delete
+                    | &nbsp;
+                    a.btn.btn-default(href="/") Cancel

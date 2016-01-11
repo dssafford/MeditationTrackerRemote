@@ -1,6 +1,6 @@
 ---
 applications:
-- name: dougstudyapp
+- name: meditationtracker
   memory: 128MB
   instances: 2
   command: node server.js
