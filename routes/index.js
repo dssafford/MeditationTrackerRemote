@@ -92,15 +92,13 @@ module.exports = function (entrys) {
 	functions.saveentry = function(req, res) {
 		// below outputs full response to browser in json format
 		//res.json(req.body);
-		console.log("IN SAVE entry - directory =" + req.body.directory);
 			var record = new entrySchema(
 				entrys[number].getInformation()
 			);
 
 			record.timestamp = Date.now();
-			record.machine = req.body.machine;
-			record.directory = req.body.directory;
-			record.project = req.body.projectname;
+			record.user = req.body.user;
+			record.minutes = req.body.minutes;
 			record.comments = req.body.comments;
 
 			record.save(function(err) {
