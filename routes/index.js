@@ -55,11 +55,44 @@ module.exports = function (journals) {
 		});		
 	};	
 
+
+
+	functions.updateJournal = function(req, res) {
+		console.log("In updateJournal");
+		// below outputs full response to browser in json format
+		//res.json(req.body);
+
+		journalSchema.findOneAndUpdate({_id: req.param("id")} , {machine: req.param("machine"), directory: req.param("directory"),  project: req.param("projectname"), comments: req.param("comments")}, function(err, record) {
+			if (err) throw err;
+
+			console.log("id:" + req.param("id"));
+
+			res.redirect("/journallist");
+
+			// record.timestamp = Date.now();
+			// record.machine = req.body.machine;
+			// record.directory = req.body.directory;
+			// record.project = req.body.projectname;
+			// record.comments = req.body.comments;
+
+			// record.save(function(err) {
+			// 	if (err) {
+			// 		console.log(err);
+			// 		res.status(500).json({status: 'failure'});
+			// 	} else {
+			// 		//res.json({status: 'success'});
+			// 		res.redirect('/journallist');
+			// 	}
+			// });
+		});
+	};
+
+
 // Add the record data to database, from POST on form submit
 	functions.saveJournal = function(req, res) {
 		// below outputs full response to browser in json format
 		//res.json(req.body);
-		console.log("directory =" + req.body.directory);
+		console.log("IN SAVE JOURNAL - directory =" + req.body.directory);
 			var record = new journalSchema(
 				journals[number].getInformation()
 			);

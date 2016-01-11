@@ -38,6 +38,11 @@ module.exports = function (journals) {
 // this is for the form submit
 	app.post('/journalinput', routes.saveJournal);
 
+// this is for the form submit
+//	app.post('/journalUpdate', routes.updateJournal);
+
+
+
 // List out journal entries sorted by date
 	app.get('/journallist', routes.entriesByDate);
 
@@ -47,6 +52,8 @@ module.exports = function (journals) {
 
 // Go to Journal edit form
 	app.get('/journaledit/:id', routes.journaledit);
+
+	app.post('/journaledit/:id', routes.updateJournal);
 
 	app.get('/journaldelete/:id', routes.journaldelete);
 
