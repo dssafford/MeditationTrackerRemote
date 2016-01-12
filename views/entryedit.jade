@@ -6,7 +6,7 @@ block main-content
     .section
       .container 
         .well
-          form.form-horizontal(name="/signup", method="post")
+          form.form-horizontal(id="entryform", method="post")
             fieldset
               legend Edit entry
               .form-group
@@ -29,3 +29,25 @@ block main-content
                     a.button.btn.btn-danger(href="/entrydelete/" + entry._id + "") Delete
                     | &nbsp;
                     a.btn.btn-default(href="/") Cancel
+
+<script>
+$(document).ready(function() {
+    $('#entryform').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            minutes: {
+                validators: {
+                    integer: {
+                        message: 'The value is not an integer'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>

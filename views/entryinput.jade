@@ -5,7 +5,7 @@ block main-content
   .section
           .container 
             .well
-              form.form-horizontal(name="/signup", method="post")
+              form.form-horizontal(id="entryform", method="post")
                 fieldset
                   legend Input info
                   .form-group
@@ -18,14 +18,15 @@ block main-content
                   .form-group
                     label.col-md-2.control-label(for="minutes") Minutes
                     .col-md-10
-                      input.form-control(name="minutes", type="text", placeholder="minutes", required)
+                      input.form-control(name="minutes", type="number", placeholder="minutes", required, data-required-msg='Password is required')
                   .form-group
                     label.col-md-2.control-label(for="comments") Comments
                     .col-md-10
-                      input.form-control(name="comments", type="text", placeholder="comments",  required)
+                      input.form-control(name="comments", type="text", placeholder="comments",  required, data-required-msg='Password is required')
                   .form-group
                     .col-md-10.col-md-offset-2
                       .pull-right
                         button.btn.btn-primary Submit
                         | &nbsp;
                         a.btn.btn-default(href="/") Cancel
+ 
