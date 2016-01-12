@@ -11,7 +11,7 @@ body {
     background-color: #d7e0e2;
 }
 .navbar-default {
-    background-color: #A9F5BC;
+    background-color: #58D3F7;
     border-color: #190707;
 }
 .navbar-inverse {
@@ -34,7 +34,10 @@ h6 {
       color: #2ECCFA;
 }
 h1 {
-  color:#13987e;
+  color:#190707;
+}
+h6 {
+  color:#190707;
 }
 footer {
   padding-left: 15px;

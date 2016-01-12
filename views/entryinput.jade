@@ -7,11 +7,14 @@ block main-content
             .well
               form.form-horizontal(name="/signup", method="post")
                 fieldset
-                  legend Enter Information
+                  legend Input info
                   .form-group
                     label.col-md-2.control-label(for="user") User
                     .col-md-10
-                      input.form-control(name="user", type="text", placeholder="user", required)
+                      select.form-control(name="user")
+                        option(value='dragon', selected=dragon) Dragon
+                        option(value='knighthawk', selected=nighthawk) Nighthawk
+                        option(value='bozo', selected=bozo) Bozo
                   .form-group
                     label.col-md-2.control-label(for="minutes") Minutes
                     .col-md-10
