@@ -57,10 +57,10 @@ var mongoose = require('mongoose');
 
 	exports.updateentry = function(req, res) {
 		//console.log("In updateentry");
-		entrySchema.findOneAndUpdate({_id: req.params.id} , {user: req.params.user, minutes: req.params.minutes,  comments: req.params.comments}, function(err, record) {
+		entrySchema.findOneAndUpdate({_id: req.body.id} , {user: req.body.user, minutes: req.body.minutes,  comments: req.body.comments}, function(err, record) {
 			if (err) throw err;
 
-			console.log("id:" + req.params("id"));
+			console.log("id:" + req.body.id);
 
 			res.redirect("/entrylist");
 		});

@@ -1,10 +1,3 @@
-
-
-/**
- * Module dependencies.
- */
-
-//module.exports = function (entrys) {
 	var express = require('express');
 	var app = express();
 	//var routes = require('./routes')(entrys);
