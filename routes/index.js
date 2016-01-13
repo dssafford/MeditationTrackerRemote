@@ -41,7 +41,7 @@ var mongoose = require('mongoose');
 	// Go to entry input form
 	exports.entryedit = function (req, res) {
 		console.log("in function entry edit");
-		entrySchema.find({ _id: req.param('id') })
+		entrySchema.find({ _id: req.params.id})
 		.exec(function(err, entrys) {
 			if (err) {
 				res.status(500).json({status: 'failure'});
@@ -57,10 +57,10 @@ var mongoose = require('mongoose');
 
 	exports.updateentry = function(req, res) {
 		//console.log("In updateentry");
-		entrySchema.findOneAndUpdate({_id: req.param("id")} , {user: req.param("user"), minutes: req.param("minutes"),  comments: req.param("comments")}, function(err, record) {
+		entrySchema.findOneAndUpdate({_id: req.params.id} , {user: req.params.user, minutes: req.params.minutes,  comments: req.params.comments}, function(err, record) {
 			if (err) throw err;
 
-			console.log("id:" + req.param("id"));
+			console.log("id:" + req.params("id"));
 
 			res.redirect("/entrylist");
 		});
@@ -89,7 +89,7 @@ var mongoose = require('mongoose');
 	};
 	exports.entrydelete = function(req, res){
 		console.log("In entry Delete");
-		 entrySchema.find( {_id: req.param("id")}, function(err,docs){
+		 entrySchema.find( {_id: req.params.id}, function(err,docs){
 		  if (err) return console.log(err);
 		  if (!docs || !Array.isArray(docs) || docs.length === 0) 
 		    	return console.log('no docs found');

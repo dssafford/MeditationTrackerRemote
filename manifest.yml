@@ -1,8 +1,8 @@
 ---
 applications:
-- name: meditationtracker
+- name: meditationtrackerTest
   memory: 128MB
-  instances: 2
+  instances: 1
   command: node app.js
 
 services:

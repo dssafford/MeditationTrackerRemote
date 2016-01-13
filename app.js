@@ -19,9 +19,9 @@
 	var morgan = require('morgan');
 	var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 	var config = require('./config'); // get our config file
-	var User = require('./schemas/user'); // get our mongoose model
+//	var User = require('./schemas/user'); // get our mongoose model
 
-	app.set("superSecret", config.secret);
+//	app.set("superSecret", config.secret);
 
 
 	var http = require('http'),
@@ -69,7 +69,7 @@
 		res.send('Hello from Doug, from /Doug route');
 
 	});
-
+/*
 	// SetUp first user simple route
 	app.get('/setup', function(req, res) {
 
@@ -104,6 +104,8 @@
 	    });
 
 	});
+*/
+
 
 // error handlers
 
