@@ -7,22 +7,22 @@ block main-content
             .well
               form.form-horizontal(id="entryform", method="post")
                 fieldset
-                  legend Input info
+                  legend Input Entry
                   .form-group
                     label.col-md-2.control-label(for="user") User
                     .col-md-10
                       select.form-control(name="user")
-                        option(value='dragon', selected=dragon) Dragon
-                        option(value='knighthawk', selected=nighthawk) Nighthawk
-                        option(value='bozo', selected=bozo) Bozo
+                        option(value='Dragon') Dragon
+                        option(value='Nighthawk') Nighthawk
+                        option(value='Bozo', selected=bozo) Bozo
                   .form-group
                     label.col-md-2.control-label(for="minutes") Minutes
                     .col-md-10
-                      input.form-control(name="minutes", type="number", placeholder="minutes", required, data-required-msg='Password is required')
+                      input.form-control(name="minutes", type="number", placeholder="minutes", required, data-required-msg='Minutes is required')
                   .form-group
                     label.col-md-2.control-label(for="comments") Comments
                     .col-md-10
-                      input.form-control(name="comments", type="text", placeholder="comments",  required, data-required-msg='Password is required')
+                      input.form-control(name="comments", type="text", placeholder="comments",  required, data-required-msg='Comments are required')
                   .form-group
                     .col-md-10.col-md-offset-2
                       .pull-right

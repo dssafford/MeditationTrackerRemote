@@ -1,51 +1,130 @@
 
+
 /**
  * Module dependencies.
  */
 
-module.exports = function (entrys) {
+//module.exports = function (entrys) {
 	var express = require('express');
-	var routes = require('./routes')(entrys);
-	var path = require('path');	
 	var app = express();
+	//var routes = require('./routes')(entrys);
+	var routes = require("./routes");
+
+	var path = require('path');	
+
+	var favicon = require('serve-favicon');
+
+	// added below to update 
+	var bodyParser = require('body-parser');
+	var morgan = require('morgan');
+	var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+	var config = require('./config'); // get our config file
+	var User = require('./schemas/user'); // get our mongoose model
+
+var http = require('http'),
+	entrys = require('./data'),
+	db = require('./db')
 
 	// all environments
 	app.set('port', process.env.PORT || 3030);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
-	app.use(express.favicon());
-	app.use(express.logger('dev'));
-	app.use(express.bodyParser());
-	app.use(express.methodOverride());
+
+
+//	app.use(express.favicon());
+// using morgan instead of logger - app.use(express.logger('dev'));
+
+//============Upgrades to newer express =================
+	// changed - app.use(express.bodyParser());
+	// use body parser so we can get info from POST and/or URL parameters
+	app.use(bodyParser.urlencoded({
+	    extended: false
+	}));
+	app.use(bodyParser.json());
+
+	// use morgan to log requests to the console
+	app.use(morgan('dev'));
+
+	// changed - app.use(express.methodOverride());
+
+//=== End of upgrades to newer express ==================
+
+
+
+	// Middleware playing with headers
 	app.use(function (req, res, next) {
 		res.set('X-Powered-By', 'Doug Safford');
 		next();
 	});
-	app.use(app.router);
+
 	app.use(express.static(path.join(__dirname, 'public')));
 
-	// development only
-	if ('development' == app.get('env')) {
-	  app.use(express.errorHandler());
-	}
+	var dougRoutes = express.Router();
 
-	app.get('/entrys/:id', routes.entrydetail);
-//	app.put('/entry/:number/save', routes.saveentry);
+	app.get('/doug', function(req, res) {
 
-// Save entry entry
-//	app.put('/entry/save', routes.saveentry);
+		res.send('Hello from Doug, from /Doug route');
+
+	});
+
+	// SetUp first user simple route
+	app.get('/setup', function(req, res) {
+
+	    // create a sample user
+	    var doug = new User({
+	        name: 'John Doe',
+	        password: 'password',
+	        admin: true
+	    });
+
+	    // save the sample user
+	    doug.save(function(err) {
+	        if (err) throw err;
+
+	        console.log('User doug saved successfully');
+	        res.json({
+	            success: true
+	        });
+	    });
+	});
+
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
+});
+
 
 // this is for the form submit
 	app.post('/entryinput', routes.saveentry);
 
 // this is for the form submit
-//	app.post('/entryUpdate', routes.updateentry);
+	app.post('/entryUpdate', routes.updateentry);
 
+//	Home page
+	app.get('/', routes.home);
 
 
 // List out entry entries sorted by date
-	app.get('/entrylist', routes.entriesByDate);
-
+ 	app.get('/entrylist', routes.listentriesByDate);
 
 // Go to entry Input Form
 	app.get('/entryinput', routes.entryinput);
@@ -53,14 +132,15 @@ module.exports = function (entrys) {
 // Go to entry edit form
 	app.get('/entryedit/:id', routes.entryedit);
 
+	// Update record
+
 	app.post('/entryedit/:id', routes.updateentry);
+
+	// Delete record
 
 	app.get('/entrydelete/:id', routes.entrydelete);
 
-//	Home page
-	app.get('/', routes.home);
 
-	return app;
-}
-
-
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('In Server.js, Doug server listening on port ' + app.get('port'));
+});

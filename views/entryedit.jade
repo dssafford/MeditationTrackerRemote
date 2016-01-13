@@ -12,15 +12,31 @@ block main-content
               .form-group
                 label.col-md-2.control-label(for="user") User
                 .col-md-10
-                  input.form-control(name="user", type="text", value=entry.user, required)
+                  - var selection = entry.user
+                    case selection
+                      when "Dragon"
+                        select.form-control(name="user")
+                          option(value='Dragon', selected) Dragon
+                          option(value='Nighthawk') Nighthawk
+                          option(value='Bozo') Bozo
+                      when "Nighthawk"
+                        select.form-control(name="user")
+                          option(value='Dragon') Dragon
+                          option(value='Nighthawk', selected) Nighthawk
+                          option(value='Bozo') Bozo
+                      when "Bozo"
+                        select.form-control(name="user")
+                          option(value='Dragon') Dragon
+                          option(value='Nighthawk') Nighthawk
+                          option(value='Bozo', selected) Bozo
               .form-group
                 label.col-md-2.control-label(for="minutes") Minutes
                 .col-md-10
-                  input.form-control(name="minutes", type="text", value=entry.minutes, required)
+                  input.form-control(name="minutes", type="number", value=entry.minutes, required, data-required-msg='Minutes is required')
               .form-group
                 label.col-md-2.control-label(for="comments") Comments
                 .col-md-10
-                  input.form-control(name="comments", type="text", value=entry.comments,  required)
+                  input.form-control(name="comments", type="text", value=entry.comments,  required, data-required-msg='Comments are required')
               .form-group
                 .col-md-10.col-md-offset-2
                   .pull-right
@@ -29,25 +45,3 @@ block main-content
                     a.button.btn.btn-danger(href="/entrydelete/" + entry._id + "") Delete
                     | &nbsp;
                     a.btn.btn-default(href="/") Cancel
-
-<script>
-$(document).ready(function() {
-    $('#entryform').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            minutes: {
-                validators: {
-                    integer: {
-                        message: 'The value is not an integer'
-                    }
-                }
-            }
-        }
-    });
-});
-</script>
