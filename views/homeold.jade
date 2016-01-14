@@ -1,0 +1,15 @@
+include layout
+include index
+include jumbotron
+block content
+  .container
+  h1 here is the test login page
+    if (!user)
+      a(href="/login") Login
+      br
+      a(href="/register") Register
+    if (user)
+      p You are currently logged in as #{user.username}
+      p.a(href="/entrys") Entry Input
+      p.a(href="/entryinput") Entry Input
+      p.a(href="/logout") Logout
