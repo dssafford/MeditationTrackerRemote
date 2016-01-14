@@ -103,16 +103,17 @@ module.exports = function(passport) {
      });     
  });  
 
-//  exports.updateentry = function(req, res) {
-//      //console.log("In updateentry");
-//      entrySchema.findOneAndUpdate({_id: req.params.id} , {user: req.body.user, minutes: req.body.minutes,  comments: req.body.comments}, function(err, record) {
-//          if (err) throw err;
+     // Update edited entry
+    router.post('/entryedit/:id', isAuthenticated, function(req, res) {   
+     //console.log("In updateentry");
+     entrySchema.findOneAndUpdate({_id: req.params.id} , {user: req.body.user, minutes: req.body.minutes,  comments: req.body.comments}, function(err, record) {
+         if (err) throw err;
 
-//          console.log("id:" + req.params.id);
+         console.log("id:" + req.params.id);
 
-//          res.redirect("/entrylist");
-//      });
-//  };
+         res.redirect("/entrylist");
+     });
+ });
 
 //  // Add the record data to database, from POST on form submit
 //  exports.saveentry = function(req, res) {
