@@ -25,10 +25,6 @@ app.set('view engine', 'jade');
 // set up port
     app.set('port', process.env.PORT || 3030);
 
-
-
-
-
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
     app.use(bodyParser.json());

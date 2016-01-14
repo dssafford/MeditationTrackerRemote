@@ -79,22 +79,29 @@ module.exports = function(passport) {
              title: 'All Doug entrys'});
  });
 
-//  // Go to entry input form
-//  exports.entryedit = function (req, res) {
-//      console.log("in function entry edit");
-//      entrySchema.find({ _id: req.params.id})
-//      .exec(function(err, entrys) {
-//          if (err) {
-//              res.status(500).json({status: 'failure'});
-//          } else {
-//              console.log("not failure getting entry edit");
-//              res.render('entryedit', {
-//                  title: 'Edit entry',
-//                  entrys: entrys
-//              });
-//          }
-//      });     
-//  };  
+// // Go to Journal edit form
+//     app.get('/journaledit/:id', routes.journaledit);
+
+//     app.post('/journaledit/:id', routes.updateJournal);
+
+//     app.get('/journaldelete/:id', routes.journaldelete);
+
+ // Go to entry edit form
+     router.get('/entryedit/:id', isAuthenticated, function(req, res) {   
+     console.log("in function entry edit");
+     entrySchema.find({ _id: req.params.id})
+     .exec(function(err, entrys) {
+         if (err) {
+             res.status(500).json({status: 'failure'});
+         } else {
+             console.log("not failure getting entry edit");
+             res.render('entryedit', {
+                 title: 'Edit entry',
+                 entrys: entrys
+             });
+         }
+     });     
+ });  
 
 //  exports.updateentry = function(req, res) {
 //      //console.log("In updateentry");
@@ -143,75 +150,9 @@ module.exports = function(passport) {
 //        });
 //  };
 
-// router.get('/register', function(req, res) {
-//     res.render('register', { });
-// });
-
-// router.post('/register', function(req, res, next) {
-//     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
-//         if (err) {
-//           return res.render("register", {info: "Sorry. That username already exists. Try again."});
-//         }
-
-//         passport.authenticate('local')(req, res, function () {
-//             req.session.save(function (err) {
-//                 if (err) {
-//                     return next(err);
-//                 }
-//                 res.redirect('/');
-//             });
-//         });
-//     });
-// });
-
-
-// router.get('/login', function(req, res) {
-//     res.render('login', { user : req.user });
-// });
-
-// router.post('/login', passport.authenticate('local'), function(req, res, next) {
-//     req.session.save(function (err) {
-//         if (err) {
-//             return next(err);
-//         }
-//         res.redirect('/');
-//     });
-// });
-
-// router.get('/logout', function(req, res, next) {
-//     req.logout();
-//     req.session.save(function (err) {
-//         if (err) {
-//             return next(err);
-//         }
-//         res.redirect('/');
-//     });
-// });
-
-// router.get('/ping', function(req, res){
-//     res.status(200).send("pong!");
-// });
-
-// 	// Just go to the home page
-// 	router.get("/home",  function(req, res) {
-// 		console.log("Calling home page");
-// 		res.render('home', {
-// 			title: 'Doug entry Home;'
-// 		});
-// 	});
-
-
-
     return router;
 
 }
-
-
-//=======
-
-
-
-
 
 
 
