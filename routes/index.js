@@ -56,7 +56,7 @@ module.exports = function(passport) {
 
     /* GET Entry List Page */
     router.get('/entrylist', isAuthenticated, function(req, res){
-console.log("in entry list doug");
+        console.log("in entry list doug");
 
       entrySchema.find()
      .setOptions({sort: 'timestamp'})
@@ -72,6 +72,76 @@ console.log("in entry list doug");
      });
  });
 
+  // Go to entry input form
+     router.get('/entryinput', isAuthenticated, function(req, res) {
+        console.log("in entry input doug");
+         res.render('entryinput', {
+             title: 'All Doug entrys'});
+ });
+
+//  // Go to entry input form
+//  exports.entryedit = function (req, res) {
+//      console.log("in function entry edit");
+//      entrySchema.find({ _id: req.params.id})
+//      .exec(function(err, entrys) {
+//          if (err) {
+//              res.status(500).json({status: 'failure'});
+//          } else {
+//              console.log("not failure getting entry edit");
+//              res.render('entryedit', {
+//                  title: 'Edit entry',
+//                  entrys: entrys
+//              });
+//          }
+//      });     
+//  };  
+
+//  exports.updateentry = function(req, res) {
+//      //console.log("In updateentry");
+//      entrySchema.findOneAndUpdate({_id: req.params.id} , {user: req.body.user, minutes: req.body.minutes,  comments: req.body.comments}, function(err, record) {
+//          if (err) throw err;
+
+//          console.log("id:" + req.params.id);
+
+//          res.redirect("/entrylist");
+//      });
+//  };
+
+//  // Add the record data to database, from POST on form submit
+//  exports.saveentry = function(req, res) {
+//      // below outputs full response to browser in json format
+//      //res.json(req.body);
+//      var record = new entrySchema();
+
+//      record.timestamp = Date.now();
+//      record.user = req.body.user;
+//      record.minutes = req.body.minutes;
+//      record.comments = req.body.comments;
+
+//      record.save(function(err) {
+//          if (err) {
+//              console.log(err);
+//              res.status(500).json({status: 'failure'});
+//          } else {
+//              //res.json({status: 'success'});
+//              res.redirect('/entrylist');
+//          }
+//      });
+//  };
+//  exports.entrydelete = function(req, res){
+//      console.log("In entry Delete");
+//       entrySchema.find( {_id: req.params.id}, function(err,docs){
+//        if (err) return console.log(err);
+//        if (!docs || !Array.isArray(docs) || docs.length === 0) 
+//              return console.log('no docs found');
+            
+//          docs.forEach( function (doc) {
+//                  doc.remove();
+//                  res.redirect("/entrylist");
+//          });
+
+//        });
+//  };
 
 // router.get('/register', function(req, res) {
 //     res.render('register', { });
@@ -130,30 +200,7 @@ console.log("in entry list doug");
 // 		});
 // 	});
 
-// 	router.get("/entrys", function(req, res) {
-// 		entrySchema.find()
-// 		.setOptions({sort: 'timestamp'})
-// 		.exec(function(err, entrys) {
-// 			if (err) {
-// 				res.status(500).json({status: 'failure'});
-// 			} else {
-// 				res.render('entrys', {
-// 					title: 'entrys',
-// 					entrys: entrys
-// 				});
-// 			}
-// 		});
-// 	});
 
-// router.get('/entryinput', passport.authenticate('local'), function(req, res, next) {
-// 	if (err) {
-// 		console.log("error getting entryinput");
-// 	}
-// 	else {
-// 		console.log("in entry input");
-//         		res.render('entryinput');
-// 	}
-// });
 
     return router;
 
@@ -190,109 +237,6 @@ console.log("in entry list doug");
 // 	exports.registerPage = function(req, res) {
 // 		res.render("register", {});
 // 	};
-
-
-
-
-// 	// Go to entry input form
-// 	exports.entryinput = 	function (req, res) {
-// 		console.log("in function entry input");
-// 		res.render('entryinput', {
-// 			title: 'All Doug entrys'});
-// 	};
-
-// 	// Go to entry input form
-// 	exports.entryedit = function (req, res) {
-// 		console.log("in function entry edit");
-// 		entrySchema.find({ _id: req.params.id})
-// 		.exec(function(err, entrys) {
-// 			if (err) {
-// 				res.status(500).json({status: 'failure'});
-// 			} else {
-// 				console.log("not failure getting entry edit");
-// 				res.render('entryedit', {
-// 					title: 'Edit entry',
-// 					entrys: entrys
-// 				});
-// 			}
-// 		});		
-// 	};	
-
-// 	exports.updateentry = function(req, res) {
-// 		//console.log("In updateentry");
-// 		entrySchema.findOneAndUpdate({_id: req.params.id} , {user: req.body.user, minutes: req.body.minutes,  comments: req.body.comments}, function(err, record) {
-// 			if (err) throw err;
-
-// 			console.log("id:" + req.params.id);
-
-// 			res.redirect("/entrylist");
-// 		});
-// 	};
-
-// 	// Add the record data to database, from POST on form submit
-// 	exports.saveentry = function(req, res) {
-// 		// below outputs full response to browser in json format
-// 		//res.json(req.body);
-// 		var record = new entrySchema();
-
-// 		record.timestamp = Date.now();
-// 		record.user = req.body.user;
-// 		record.minutes = req.body.minutes;
-// 		record.comments = req.body.comments;
-
-// 		record.save(function(err) {
-// 			if (err) {
-// 				console.log(err);
-// 				res.status(500).json({status: 'failure'});
-// 			} else {
-// 				//res.json({status: 'success'});
-// 				res.redirect('/entrylist');
-// 			}
-// 		});
-// 	};
-// 	exports.entrydelete = function(req, res){
-// 		console.log("In entry Delete");
-// 		 entrySchema.find( {_id: req.params.id}, function(err,docs){
-// 		  if (err) return console.log(err);
-// 		  if (!docs || !Array.isArray(docs) || docs.length === 0) 
-// 		    	return console.log('no docs found');
-		  	
-// 		  	docs.forEach( function (doc) {
-// 		    		doc.remove();
-// 		    		res.redirect("/entrylist");
-// 		  	});
-
-// 		  });
-// 	};
-
-
-
-
-
-
-
-
-
-
-
-
-// //	Home page
-// // was	app.get('/', routes.home);
-// 	app.get('/', routes.indexPage);
-
-// 	app.get("/login", routes.indexPage);
-
-// 	app.post("/login", routes.loginPost);
-
-// 	app.get("/register", routes.registerPage);
-
-
-// // this is for the form submit
-// 	app.post('/entryinput', routes.saveentry);
-
-// // this is for the form submit
-// 	app.post('/entryUpdate', routes.updateentry);
-
 
 
 // // Go to entry Input Form
