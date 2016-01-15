@@ -20,6 +20,6 @@ else {
 
 //var url = 'mongodb://doug:doug@ds037175.mongolab.com:37175/CloudFoundry_l1hnqf0n_mmhir01l';
 mongoose.connect(url);
-console.log("In db.js, mongoose connecting");
+console.log("In db.js, mongoose connecting to: " + url);
 
 module.exports = mongoose.connection;
