@@ -10,11 +10,12 @@ var passport = require('passport');
 var expressSession = require('express-session');
 var routes = require('./routes/index')(passport);
 
+var db = require('./db');
 
 
 
 // Connect to DB
-mongoose.connect('mongodb://localhost/meditationtracker');
+//mongoose.connect('mongodb://localhost/meditationtracker');
 
 var app = express();
 

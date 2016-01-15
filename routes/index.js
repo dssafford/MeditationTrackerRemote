@@ -153,7 +153,7 @@ module.exports = function(passport) {
                     
                  docs.forEach( function (doc) {
                          doc.remove();
-                         res.redirect("/home");
+                         res.redirect("/entrylist");
                  });
 
            });
