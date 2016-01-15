@@ -48,6 +48,11 @@ module.exports = function(passport) {
         res.render('home', { user: req.user });
     });
 
+    /* GET Home Page */
+    router.get('/homeold', isAuthenticated, function(req, res){
+        res.render('homeold', { user: req.user });
+    });
+
     /* Handle Logout */
     router.get('/signout', function(req, res) {
         req.logout();
@@ -115,87 +120,45 @@ module.exports = function(passport) {
      });
  });
 
-//  // Add the record data to database, from POST on form submit
-//  exports.saveentry = function(req, res) {
-//      // below outputs full response to browser in json format
-//      //res.json(req.body);
-//      var record = new entrySchema();
 
-//      record.timestamp = Date.now();
-//      record.user = req.body.user;
-//      record.minutes = req.body.minutes;
-//      record.comments = req.body.comments;
+         // Add the record data to database, from POST on form submit
+            router.post('/entryinput', isAuthenticated, function(req, res) {   
+             // below outputs full response to browser in json format
+             //res.json(req.body);
+             var record = new entrySchema();
 
-//      record.save(function(err) {
-//          if (err) {
-//              console.log(err);
-//              res.status(500).json({status: 'failure'});
-//          } else {
-//              //res.json({status: 'success'});
-//              res.redirect('/entrylist');
-//          }
-//      });
-//  };
-//  exports.entrydelete = function(req, res){
-//      console.log("In entry Delete");
-//       entrySchema.find( {_id: req.params.id}, function(err,docs){
-//        if (err) return console.log(err);
-//        if (!docs || !Array.isArray(docs) || docs.length === 0) 
-//              return console.log('no docs found');
-            
-//          docs.forEach( function (doc) {
-//                  doc.remove();
-//                  res.redirect("/entrylist");
-//          });
+             record.timestamp = Date.now();
+             record.user = req.body.user;
+             record.minutes = req.body.minutes;
+             record.comments = req.body.comments;
 
-//        });
-//  };
+             record.save(function(err) {
+                 if (err) {
+                     console.log(err);
+                     res.status(500).json({status: 'failure'});
+                 } else {
+                     //res.json({status: 'success'});
+                     res.redirect('/entrylist');
+                 }
+             });
+         });
+
+         router.get('/entrydelete/:id', isAuthenticated, function(req, res) {   
+     
+             console.log("In entry Delete");
+              entrySchema.find( {_id: req.params.id}, function(err,docs){
+               if (err) return console.log(err);
+               if (!docs || !Array.isArray(docs) || docs.length === 0) 
+                     return console.log('no docs found');
+                    
+                 docs.forEach( function (doc) {
+                         doc.remove();
+                         res.redirect("/home");
+                 });
+
+           });
+     });
 
     return router;
 
 }
-
-
-
-// //======= new ========
-// var mongoose = require('mongoose');
-
-// // router.get('/', function (req, res) {
-// //     res.render('index', { user : req.user });
-// // });
-
-// 	exports.index = function(req, res) {
-// 		res.render('home', {user: req.user});
-// 	};
-
-// 	exports.indexPage = function(req, res) {
-// 		res.render('login', {user: req.user});
-// 	};
-// // loggin in routes
-
-// // router.get('/register', function(req, res) {
-// //     res.render('register', { });
-// // });
-// 	exports.registerPage = function(req, res) {
-// 		res.render("register", {});
-// 	};
-
-
-// // Go to entry Input Form
-// 	app.get('/entryinput', routes.entryinput);
-
-// // Go to entry edit form
-// 	app.get('/entryedit/:id', routes.entryedit);
-
-// 	// Update record
-
-// 	app.post('/entryedit/:id', routes.updateentry);
-
-// 	// Delete record
-
-// 	app.get('/entrydelete/:id', routes.entrydelete);
-
-
-// // List out entry entries sorted by date
-//  	app.get('/entrylist', routes.listentriesByDate);
-
