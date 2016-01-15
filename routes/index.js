@@ -54,9 +54,11 @@ module.exports = function(passport) {
     });
 
     /* Handle Logout */
-    router.get('/signout', function(req, res) {
+    router.get('/logout', isAuthenticated, function(req, res) {
+        console.log("in logout");
+
         req.logout();
-        res.redirect('/');
+        res.redirect('home');
     });
 
     /* GET Entry List Page */
