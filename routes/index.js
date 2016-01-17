@@ -2,6 +2,8 @@ var express = require('express');
 //var passport = require('passport');
 var Account = require('../schemas/account');
 var entrySchema = require('../schemas/entry');
+var logUserSchema = require("../schemas/logUser");
+
 var router = express.Router();
 
 
@@ -15,8 +17,27 @@ var isAuthenticated = function (req, res, next) {
     res.redirect('/');
 }
 
+function logUser (username,  type) {
+    var record = new logUserSchema();
+
+     record.timestamp = Date.now();
+     record.user = username;
+     record.type = type;
+
+     record.save(function(err) {
+         if (err) {
+             console.log(err);
+             res.status(500).json({status: 'failure'});
+         } 
+     });
+}
+
+
 
 module.exports = function(passport) {
+
+
+
 
     /* GET login page. */
     router.get('/', function(req, res) {
@@ -55,9 +76,14 @@ module.exports = function(passport) {
 
     /* Handle Logout */
     router.get('/logout', isAuthenticated, function(req, res) {
-        console.log("in logout");
-
+        console.log("in logout, user=" + req.user.username);
+        
+        // log the logout
+        logUser(req.user.username, "out")
         req.logout();
+
+
+
         res.redirect('home');
     });
 
@@ -84,7 +110,9 @@ module.exports = function(passport) {
      router.get('/entryinput', isAuthenticated, function(req, res) {
         console.log("in entry input doug");
          res.render('entryinput', {
-             title: 'All Doug entrys'});
+             title: 'All Doug entrys',
+            user: req.user
+        });
  });
 
  // Go to entry edit form
@@ -98,7 +126,8 @@ module.exports = function(passport) {
              console.log("not failure getting entry edit");
              res.render('entryedit', {
                  title: 'Edit entry',
-                 entrys: entrys
+                 entrys: entrys,
+                 user: req.user
              });
          }
      });     

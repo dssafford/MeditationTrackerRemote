@@ -1,6 +1,24 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User = require('../schemas/user');
+var logUserSchema = require("../schemas/logUser");
+
 var bCrypt = require('bcrypt-nodejs');
+
+function logUser (username,  type) {
+    var record = new logUserSchema();
+
+     record.timestamp = Date.now();
+     record.user = username;
+     record.type = type;
+
+     record.save(function(err) {
+         if (err) {
+             console.log(err);
+             res.status(500).json({status: 'failure'});
+         } 
+     });
+}
+
 
 module.exports = function(passport){
 
@@ -26,6 +44,10 @@ module.exports = function(passport){
                     }
                     // User and password both match, return user from done method
                     // which will be treated like success
+
+
+                    logUser(username,  "in");
+
                     return done(null, user);
                 }
             );
