@@ -2,28 +2,19 @@ include layoutold
 include header
 include jumbotron
 block main-content
-
--function getDate(newDate) {
--var dateNow = newDate;
--var dd = dateNow.getDate()+1;
--var monthSingleDigit = dateNow.getMonth() + 1
-- var mm = monthSingleDigit < 10 ? '0' + monthSingleDigit : monthSingleDigit;
--var yy = dateNow.getFullYear().toString();
--var formattedDate = yy + '-' + mm + '-' + dd;
-- return formattedDate;
--}
-
-each entry, index in entrys
+  each entry, index in entrys
     .section
       .container 
         .well
           form.form-horizontal(id="entryform", method="post")
             fieldset
               legend Edit entry
-              .form-group
-                 label.col-md-2.control-label(for="timestamp") Date
-                 .col-md-5
-                  input.form-control(name="timestamp", type="date", value='#{getDate(entry.timestamp)}')     
+             .form-group
+               label.col-md-2.control-label(for="date") Date
+               .col-md-5
+                 .input-group.input-append.date(for="datepicker")
+                  input.form-control(name="date", type="date", value=entry.comments,  required, data-required-msg='Comments are required')
+                  .span.class.input-group-addon.add-on.span.glyphicon.glyphicon-calendar
               .form-group
                 label.col-md-2.control-label(for="user") User
                 .col-md-10

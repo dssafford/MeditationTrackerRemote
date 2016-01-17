@@ -136,7 +136,7 @@ module.exports = function(passport) {
      // Update edited entry
     router.post('/entryedit/:id', isAuthenticated, function(req, res) {   
      //console.log("In updateentry");
-     entrySchema.findOneAndUpdate({_id: req.params.id} , {user: req.body.user, minutes: req.body.minutes,  comments: req.body.comments}, function(err, record) {
+     entrySchema.findOneAndUpdate({_id: req.params.id} , {timestamp: req.body.timestamp, user: req.body.user, minutes: req.body.minutes,  comments: req.body.comments}, function(err, record) {
          if (err) throw err;
 
          console.log("id:" + req.params.id);
@@ -152,7 +152,7 @@ module.exports = function(passport) {
              //res.json(req.body);
              var record = new entrySchema();
 
-             record.timestamp = Date.now();
+             record.timestamp = req.body.timestamp;
              record.user = req.body.user;
              record.minutes = req.body.minutes;
              record.comments = req.body.comments;

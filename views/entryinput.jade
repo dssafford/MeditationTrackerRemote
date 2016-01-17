@@ -2,12 +2,25 @@ include layoutold
 include header
 include jumbotron
 block main-content
+
+-var dateNow = new Date();
+-var dd = dateNow.getDate();
+-var monthSingleDigit = dateNow.getMonth() + 1
+- var mm = monthSingleDigit < 10 ? '0' + monthSingleDigit : monthSingleDigit;
+-var yy = dateNow.getFullYear().toString();
+
+-var formattedDate = yy + '-' + mm + '-' + dd;
+
   .section
           .container 
             .well
               form.form-horizontal(id="entryform", method="post")
                 fieldset
                   legend Input Entry
+                  .form-group
+                    label.col-md-2.control-label(for="timestamp") Date
+                    .col-md-5
+                     input.form-control(name="timestamp", type="date", value='#{formattedDate}')            
                   .form-group
                     label.col-md-2.control-label(for="user") User
                     .col-md-10
@@ -18,7 +31,7 @@ block main-content
                   .form-group
                     label.col-md-2.control-label(for="minutes") Minutes
                     .col-md-10
-                      input.form-control(name="minutes", type="number", placeholder="minutes", required, data-required-msg='Minutes is required')
+                      input.form-control(name="minutes", type="number", value='#{formattedDate}', placeholder="minutes", required, data-required-msg='Minutes is required')
                   .form-group
                     label.col-md-2.control-label(for="comments") Comments
                     .col-md-10
