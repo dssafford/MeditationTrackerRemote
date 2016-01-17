@@ -45,25 +45,24 @@ a {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-.account-wall{
+.account-wall {
     margin-top: 20px;
     padding: 40px 0px 20px 0px;
-    background-color: #f7f7f7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    background-color:#0000CC 2px 2px;
+    -webkit-box-shadow: 0px 2px 2px;
+    box-shadow: 2px 2px 2px 2px;
 }
 .signup-wall{
 	margin-top: 20px;
     padding: 20px 0px 20px 0px;
-    background-color: #f7f7f7;
+    background-color: #202020;
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);	
+    box-shadow: 2px 2px 2px;	
 }
 .login-title{
-    color: #555;
-    font-size: 18px;
+    color: #000099;
+    font-size: 20px;
     font-weight: 400;
     display: block;
 }

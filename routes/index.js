@@ -73,7 +73,8 @@ module.exports = function(passport) {
          } else {
              res.render('entrys', {
                  title: 'entrys',
-                 entrys: entrys
+                 entrys: entrys,
+                 user: req.user
              });
          }
      });
@@ -85,13 +86,6 @@ module.exports = function(passport) {
          res.render('entryinput', {
              title: 'All Doug entrys'});
  });
-
-// // Go to Journal edit form
-//     app.get('/journaledit/:id', routes.journaledit);
-
-//     app.post('/journaledit/:id', routes.updateJournal);
-
-//     app.get('/journaldelete/:id', routes.journaldelete);
 
  // Go to entry edit form
      router.get('/entryedit/:id', isAuthenticated, function(req, res) {   

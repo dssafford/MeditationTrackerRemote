@@ -1,9 +1,0 @@
-include layout
-
-block content
-	h1= title
-	h2 Doug this is from the canned data
-	ul
-		each entry, index in entrys
-			- entry = entry.getInformation()
-			li= entry.user + ': ' + entry.minutes + '-' + entry.comments
