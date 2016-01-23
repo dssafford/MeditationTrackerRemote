@@ -16,43 +16,61 @@ include jumbotron
 -}
 block content
 .container.top-padding-med
-	p Sorted by #{user} 
-		a(href="/entrylistSorted/Bozo") Bozo | 
-		a(href="/entrylistSorted/Dragon") Dragon | 
-		a(href="/entrylistSorted/Nighthawk") Nighthawk
-	- var selection = user
-	case selection
-		when "Dragon"
-			select.form-control(name="user" id="douglas")
-				option(value='Dragon', selected) Dragon
-				option(value='Nighthawk') Nighthawk
-				option(value='Bozo') Bozo
-		when "Nighthawk"
-			select.form-control(name="user" id="douglas")
-				option(value='Dragon') Dragon
-				option(value='Nighthawk', selected) Nighthawk
-				option(value='Bozo') Bozo
-		when "Bozo"
-			select.form-control(name="user" id="douglas")
-				option(value='Dragon') Dragon
-				option(value='Nighthawk') Nighthawk
-				option(value='Bozo', selected) Bozo
-	table.table.table-hover.table-striped.table-bordered.top-padding-med
-		tr
-			th.text-center Date
-			th User
-			th Minutes
-			th Comments
-			th.text-center Delete?
-				each entry, index in entrys
-					tr 
-						td.text-center
-							a(href="/entryedit/" + entry._id + "") #{getDate(entry.timestamp)}
-						td=entry.user
-						td=entry.minutes
-						td=entry.comments
-						td.text-center
-							a.button.btn.btn-danger(href="/entrydelete/" + entry._id + "") Delete
+	.div.col-md-3
+		- var selection = user
+		case selection
+			when "Dragon"
+				select.form-control(name="user" id="douglas")
+					option(value='Dragon', selected) Dragon
+					option(value='Nighthawk') Nighthawk
+					option(value='Bozo') Bozo
+			when "Nighthawk"
+				select.form-control(name="user" id="douglas")
+					option(value='Dragon') Dragon
+					option(value='Nighthawk', selected) Nighthawk
+					option(value='Bozo') Bozo
+			when "Bozo"
+				select.form-control(name="user" id="douglas")
+					option(value='Dragon') Dragon
+					option(value='Nighthawk') Nighthawk
+					option(value='Bozo', selected) Bozo
+	&nbsp;
+	.div.col-md-3
+		- var selection = user
+		case selection
+			when "Dragon"
+				select.form-control(name="user" id="douglas")
+					option(value='Dragon', selected) Dragon
+					option(value='Nighthawk') Nighthawk
+					option(value='Bozo') Bozo
+			when "Nighthawk"
+				select.form-control(name="user" id="douglas")
+					option(value='Dragon') Dragon
+					option(value='Nighthawk', selected) Nighthawk
+					option(value='Bozo') Bozo
+			when "Bozo"
+				select.form-control(name="user" id="douglas")
+					option(value='Dragon') Dragon
+					option(value='Nighthawk') Nighthawk
+					option(value='Bozo', selected) Bozo
+	.div.col-md-10
+		p
+			table.table.table-hover.table-striped.table-bordered.top-padding-med
+				tr
+					th.text-center Date
+					th User
+					th Minutes
+					th Comments
+					th.text-center Delete?
+						each entry, index in entrys
+							tr 
+								td.text-center
+									a(href="/entryedit/" + entry._id + "") #{getDate(entry.timestamp)}
+								td=entry.user
+								td=entry.minutes
+								td=entry.comments
+								td.text-center
+									a.button.btn.btn-danger(href="/entrydelete/" + entry._id + "") Delete
 			block append scripts
 				script.
 					document.getElementById("douglas").onchange = function() {
