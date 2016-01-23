@@ -24,22 +24,28 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // set up port
-    app.set('port', process.env.PORT || 3030);
+app.set('port', process.env.PORT || 3030);
 
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }))
-app.use(expressSession({secret: 'mySecret', resave:true, saveUninitialized:true}));
+app.use(expressSession({
+    secret: 'mySecret',
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
- // Using the flash middleware provided by connect-flash to store messages in session
- // and displaying in templates
+// Using the flash middleware provided by connect-flash to store messages in session
+// and displaying in templates
 var flash = require('connect-flash');
 app.use(flash());
 
