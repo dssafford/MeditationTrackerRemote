@@ -16,10 +16,10 @@ include jumbotron
 -}
 block content
 .container.top-padding-med
-	h6.col-md-2 Sorted by #{user} 
-	a(href="/entrylistSorted/Bozo") Bozo | 
-	a(href="/entrylistSorted/Dragon") Dragon | 
-	a(href="/entrylistSorted/Nighthawk") Nighthawk
+	p Sorted by #{user} 
+		a(href="/entrylistSorted/Bozo") Bozo | 
+		a(href="/entrylistSorted/Dragon") Dragon | 
+		a(href="/entrylistSorted/Nighthawk") Nighthawk
 	- var selection = user
 	case selection
 		when "Dragon"
@@ -37,8 +37,7 @@ block content
 				option(value='Dragon') Dragon
 				option(value='Nighthawk') Nighthawk
 				option(value='Bozo', selected) Bozo
-	.p &nbsp;
-	table.table.table-hover.table-striped.table-bordered
+	table.table.table-hover.table-striped.table-bordered.top-padding-med
 		tr
 			th.text-center Date
 			th User
@@ -54,15 +53,14 @@ block content
 						td=entry.comments
 						td.text-center
 							a.button.btn.btn-danger(href="/entrydelete/" + entry._id + "") Delete
-
-		block append scripts
-			script.
-				document.getElementById("douglas").onchange = function() {
-				//alert("in function. value=" + douglas.value +"'" );
-				window.location = douglas.value;
-					//- if (this.selectedIndex!==0) {
-					//- 	window.location = "www.microsoft.com"
-					//- 	//#{doit("eatshit")};
-					//- 	//window.location.href = "www.microsoft.com";
-					//- };
-				};
+			block append scripts
+				script.
+					document.getElementById("douglas").onchange = function() {
+					//alert("in function. value=" + douglas.value +"'" );
+					window.location = douglas.value;
+						//- if (this.selectedIndex!==0) {
+						//- 	window.location = "www.microsoft.com"
+						//- 	//#{doit("eatshit")};
+						//- 	//window.location.href = "www.microsoft.com";
+						//- };
+					};
