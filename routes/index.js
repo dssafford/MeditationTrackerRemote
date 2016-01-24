@@ -262,7 +262,7 @@ module.exports = function(passport) {
 
             console.log("id:" + req.params.id);
 
-            res.redirect("/entrylist");
+            res.redirect("/homeold");
         });
     });
 
@@ -286,7 +286,7 @@ module.exports = function(passport) {
                 });
             } else {
                 //res.json({status: 'success'});
-                res.redirect('/entrylist');
+                res.redirect('/homeold');
             }
         });
     });
@@ -303,7 +303,7 @@ module.exports = function(passport) {
 
             docs.forEach(function(doc) {
                 doc.remove();
-                res.redirect("/entrylist");
+                res.redirect("/homeold");
             });
 
         });
