@@ -1,0 +1,86 @@
+include layoutold
+include header
+include jumbotron
+- function getDate(dateString) {
+	//if it's already a date object and not a string you don't need this line:
+	-var date = new Date(dateString);
+	-var d = date.getDate() + 1;
+	-var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+	-var m = monthNames[date.getMonth()];
+	-var y = date.getFullYear();
+	-return d +' '+m+' '+y;
+-}
+-function doit(strValue) {
+-	//window.location.href = "http://stackoverflow.com";
+- console.log("eat shit");
+-}
+block content
+.div
+	.container-fluid
+		.row.col-xs-12
+		.div.col-xs-2.col-sm-1(style="float: left;") Filter
+		- var selection = user
+		case selection
+			when "Dragon"
+				.div.col-xs-2.col-sm-1.select.form-control(name="user" id="douglas")
+					option(value='Dragon', selected) Dragon
+					option(value='Nighthawk') Nighthawk
+					option(value='Bozo') Bozo
+			when "Nighthawk"
+				.div.col-xs-2.col-sm-1.select.form-controlselect.form-control(name="user" id="douglas")
+					option(value='Dragon') Dragon
+					option(value='Nighthawk', selected) Nighthawk
+					option(value='Bozo') Bozo
+			when "Bozo"
+				.div.col-xs-2.col-sm-1.select.form-controlselect.form-control(name="user" id="douglas")
+					option(value='Dragon') Dragon
+					option(value='Nighthawk') Nighthawk
+					option(value='Bozo', selected) Bozo
+		.div.col-xs-2.col-sm-1(style="float:left;") Sort
+		.div.col-xs-2.col-sm-1
+		- var selection = user
+		case selection
+			when "Dragon"
+				select.form-control(name="user" id="douglas")
+					option(value='Dragon', selected) Dragon
+					option(value='Nighthawk') Nighthawk
+					option(value='Bozo') Bozo
+			when "Nighthawk"
+				select.form-control(name="user" id="douglas")
+					option(value='Dragon') Dragon
+					option(value='Nighthawk', selected) Nighthawk
+					option(value='Bozo') Bozo
+			when "Bozo"
+				select.form-control(name="user" id="douglas")
+					option(value='Dragon') Dragon
+					option(value='Nighthawk') Nighthawk
+					option(value='Bozo', selected) Bozo
+		.div.col-md-10
+			p
+				table.table.table-hover.table-striped.table-bordered.top-padding-med
+					tr
+						th.text-center Date
+						th User
+						th Minutes
+						th Comments
+						th.text-center Delete?
+							each entry, index in entrys
+								tr 
+									td.text-center
+										a(href="/entryedit/" + entry._id + "") #{getDate(entry.timestamp)}
+									td=entry.user
+									td=entry.minutes
+									td=entry.comments
+									td.text-center
+										a.button.btn.btn-danger(href="/entrydelete/" + entry._id + "") Delete
+			block append scripts
+				script.
+					document.getElementById("douglas").onchange = function() {
+					//alert("in function. value=" + douglas.value +"'" );
+					window.location = douglas.value;
+						//- if (this.selectedIndex!==0) {
+						//- 	window.location = "www.microsoft.com"
+						//- 	//#{doit("eatshit")};
+						//- 	//window.location.href = "www.microsoft.com";
+						//- };
+					};

@@ -1,14 +1,15 @@
 body {
-  padding-top: 69px;
+  padding-top: 30px;
 }
 .jumbotron {
-    padding: 30px;
+    padding: 2px;
     margin-bottom: 30px;
     font-size: 21px;
-    font-weight: 200;
+    font-weight: 200px;
     line-height: 2.14286;
     color: inherit;
     background-color: #d7e0e2;
+    margin-bottom:0;
 }
 .navbar-default {
     background-color: #58D3F7;
@@ -26,7 +27,7 @@ body {
     color: #333;
 }
 th {
-  font-size: 25px;
+  font-size: 15px;
   color: #2ECCFA;
 }
 

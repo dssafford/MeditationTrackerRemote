@@ -2,7 +2,6 @@ include layoutold
 include header
 include jumbotron
 block main-content
-
 -function getDate(newDate) {
 -var dateNow = newDate;
 -var dd = dateNow.getDate()+1;
@@ -12,7 +11,6 @@ block main-content
 -var formattedDate = yy + '-' + mm + '-' + dd;
 - return formattedDate;
 -}
-
 each entry, index in entrys
     .section
       .container 
@@ -45,7 +43,7 @@ each entry, index in entrys
                           option(value='Nighthawk') Nighthawk
                           option(value='Bozo', selected) Bozo
               .form-group
-            label.col-md-2.control-label(for="minutes") Minutes
+                label.col-md-2.control-label(for="minutes") Minutes
                 .col-md-10
                   input.form-control(name="minutes", type="number", value=entry.minutes, required, data-required-msg='Minutes is required')
               .form-group

@@ -1,0 +1,24 @@
+include layoutold
+.div
+	.container-fluid
+		.row.col-xs-12
+		.div.col-xs-2.col-sm-1(style="float: left;") User
+		.div.col-xs-2.col-sm-1
+			input#username(type='text', value='' style="float:right")
+		.div.col-xs-2.col-sm-1(style="float: left;") Password
+		.div.col-xs-2.col-sm-1
+			input#username(type='password', value='')
+		.div.col-xs-2.col-sm-1
+			label.col-sm-1.control-label(for="date" style="float: right;") Filter:
+		.div.col-xs-2.col-sm-1
+			select.form-control(name="user" style="float: left;")
+				option(value='Dragon', selected) Dragon
+				option(value='Nighthawk') Nighthawk
+				option(value='Bozo') Bozo
+		.div.col-xs-2.col-sm-2
+			label.col-sm-3.control-label(for="date" style="float: right;") Sort:
+		.div.col-xs-2.col-sm-2
+			select.form-control(name="user")
+				option(value='Dragon') Dragon
+				option(value='Nighthawk', selected) Nighthawk
+				option(value='Bozo') Bozo
