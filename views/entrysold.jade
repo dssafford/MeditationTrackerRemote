@@ -37,6 +37,11 @@ block content
 						option(value='Dragon') Dragon
 						option(value='Nighthawk') Nighthawk
 						option(value='Bozo', selected) Bozo
+				default
+					select.form-control(name="user" id="douglas" style="left:30px")
+						option(value='Dragon') Dragon
+						option(value='Nighthawk') Nighthawk
+						option(value='Bozo') Bozo
 		.div.col-xs-1.col-sm-1(style="float:left;") Sort
 		.div.col-xs-2.col-sm-2(style="float:left")
 			- var selection = user
@@ -56,6 +61,11 @@ block content
 						option(value='Dragon') Dragon
 						option(value='Nighthawk') Nighthawk
 						option(value='Bozo', selected) Bozo
+				default
+					select.form-control(name="user" id="douglas" style="left:30px")
+						option(value='Dragon') Dragon
+						option(value='Nighthawk') Nighthawk
+						option(value='Bozo') Bozo
 		.div.col-md-10
 			p
 				table.table.table-hover.table-striped.table-bordered.top-padding-med
@@ -77,8 +87,13 @@ block content
 			block append scripts
 				script.
 					document.getElementById("douglas").onchange = function() {
-					//alert("in function. value=" + douglas.value +"'" );
-					window.location = douglas.value;
+					var mystring = window.location.pathname;
+					alert("mystring = " + mystring );
+					//if (mystring.indexOf("entry") ==-1) {
+					//    window.location = douglas.value;
+					//} else {
+						window.location = douglas.value;
+					//}
 						//- if (this.selectedIndex!==0) {
 						//- 	window.location = "www.microsoft.com"
 						//- 	//#{doit("eatshit")};

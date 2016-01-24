@@ -51,7 +51,7 @@ module.exports = function(passport) {
 
     /* Handle Login POST */
     router.post('/login', passport.authenticate('login', {
-        successRedirect: '/entrylist',
+        successRedirect: '/homeold',
         failureRedirect: '/',
         failureFlash: true
     }));
@@ -97,7 +97,7 @@ module.exports = function(passport) {
         res.redirect('home');
     });
 
-    /* GET Entry List Page */
+    /* GET Entry List Page
     router.get('/entrylist', isAuthenticated, function(req, res) {
         console.log("in entry list doug");
 
@@ -119,32 +119,32 @@ module.exports = function(passport) {
                 }
             });
     });
+*/
+    /* GET Entry List Page 
+        router.get('/entrylistsorted', isAuthenticated, function(req, res) {
+            console.log("in entry list Sorted doug");
 
-    /* GET Entry List Page */
-    router.get('/entrylistsorted', isAuthenticated, function(req, res) {
-        console.log("in entry list Sorted doug");
-
-        entrySchema.find({
-                user: 'Dragon'
-            })
-            .setOptions({
-                sort: 'timestamp'
-            })
-            .exec(function(err, entrys) {
-                if (err) {
-                    res.status(500).json({
-                        status: 'failure'
-                    });
-                } else {
-                    res.render('entrysSorted', {
-                        title: 'Entries Sorted',
-                        entrys: entrys,
-                        user: req.user
-                    });
-                }
-            });
-    });
-
+            entrySchema.find({
+                    user: 'Dragon'
+                })
+                .setOptions({
+                    sort: 'timestamp'
+                })
+                .exec(function(err, entrys) {
+                    if (err) {
+                        res.status(500).json({
+                            status: 'failure'
+                        });
+                    } else {
+                        res.render('entryListSorted', {
+                            title: 'Entries Sorted',
+                            entrys: entrys,
+                            user: req.user
+                        });
+                    }
+                });
+        });
+    */
     // Go to entry input form
     router.get('/entryinput', isAuthenticated, function(req, res) {
         console.log("in entry input doug");
@@ -175,30 +175,77 @@ module.exports = function(passport) {
                 }
             });
     });
-/////////////////////////////////////////////////////
-     // Sorted table edited entry
-    router.get('/entrylistSorted/:user', isAuthenticated, function(req, res) {   
+    /////////////////////////////////////////////////////
+    // Sorted table edited entry
+    router.get('/entrylistSorted/:user', isAuthenticated, function(req, res) {
         console.log("In entrylistSorted");
-        entrySchema.find({
-                user: req.params.user
-            })
-            .setOptions({
-                sort: 'timestamp'
-            })
-            .exec(function(err, entrys) {
-                if (err) {
-                    res.status(500).json({
-                        status: 'failure'
-                    });
+        var myUser = req.params.user;
+        console.log("myUser:" + myUser);
+        // Return nothing if first time
+        if (myUser == '') {
+            console.log("In myUser = nil");
+            entrySchema.find()
+                .setOptions({
+                    sort: 'timestamp'
+                })
+                .exec(function(err, entrys) {
+                    if (err) {
+                        res.status(500).json({
+                            status: 'failure'
+                        });
+                    } else {
+                        res.render('entrys', {
+                            title: 'Entries Sorted',
+                            entrys: entrys,
+                            user: req.params.user
+                        });
+                    }
+                })
+        // For now allow returning all
+        } else if (myUser == "All") {
+            console.log("In myUser = All: " + myUser);
+            entrySchema.find()
+                .setOptions({
+                    sort: 'timestamp'
+                })
+                .exec(function(err, entrys) {
+                    if (err) {
+                        res.status(500).json({
+                            status: 'failure'
+                        });
+                    } else {
+                        res.render('entrys', {
+                            title: 'entrys',
+                            entrys: entrys,
+                            user: "All"
+                        });
+                    }
+                })
                 } else {
-                    res.render('entrysSorted', {
-                        title: 'Entries Sorted',
-                        entrys: entrys,
-                        user: req.params.user
-                    });
-                }
-            });
-     });
+                console.log("In myUser = a value=" + myUser);
+                entrySchema.find({
+                    user: myUser
+                })
+                .setOptions({
+                    sort: 'timestamp'
+                })
+                .exec(function(err, entrys) {
+                    if (err) {
+                        res.status(500).json({
+                            status: 'failure'
+                        });
+                    } else {
+                        res.render('entrys',  {
+                            title: 'entrys',
+                            entrys: entrys,
+                            user: myUser
+                        });
+                    }
+                });
+        }
+    });
+
+
 
     // Update edited entry
     router.post('/entryedit/:id', isAuthenticated, function(req, res) {

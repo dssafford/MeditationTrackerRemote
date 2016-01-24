@@ -1,0 +1,30 @@
+include layoutold
+include header
+include jumbotron
+- function getDate(dateString) {
+	//if it's already a date object and not a string you don't need this line:
+	-var date = new Date(dateString);
+	-var d = date.getDate() + 1;
+	-var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+	-var m = monthNames[date.getMonth()];
+	-var y = date.getFullYear();
+	-return d +' '+m+' '+y;
+-}
+block content
+.container.top-padding-med
+	table.table.table-hover.table-striped.table-bordered
+		tr
+			th.text-center Date
+			th User
+			th Minutes
+			th Comments
+			th.text-center Delete?
+				each entry, index in entrys
+					tr 
+						td.text-center
+							a(href="/entryedit/" + entry._id + "") #{getDate(entry.timestamp)}
+						td=entry.user
+						td=entry.minutes
+						td=entry.comments
+						td.text-center
+							a.button.btn.btn-danger(href="/entrydelete/" + entry._id + "") Delete
